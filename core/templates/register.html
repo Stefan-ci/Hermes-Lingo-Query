@@ -1,0 +1,117 @@
+{% extends "public/base.html" %}
+
+{% block title %}
+    Create a new account :: {{ site_name }}
+{% endblock title %}
+
+
+{% block content %}
+    <div class="container-fluid py-4">
+        <div class="row bg-light py-5">
+            <div class="col-md-2 col-lg-3 col-xl-3 col-xxl-3"></div>
+            <div class="col-md-8 col-lg-6 col-xl-6 col-xxl-6 p-3">
+                <div class="mb-3">
+                    <h1 class="text-center h3">
+                        Create a new account now
+                    </h1>
+                </div>
+                <div class="form">
+                    <form method="POST" id="registerForm" class="form-control">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <div class="row mt-3 form-group">
+                                <div class="col-md-6 col-lg-6 col-12 mb-2">
+                                    <label for="id_username" class="text-uppercase">
+                                        Username
+                                        <sup class="text-danger small">*</sup>
+                                    </label>
+                                    {{ form.username }}
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-12 mb-2">
+                                    <label for="id_email" class="text-uppercase">
+                                        Email
+                                        <sup class="text-danger small">*</sup>
+                                    </label>
+                                    {{ form.email }}
+                                </div>
+                            </div>
+
+                            <div class="row mt-3 form-group">
+                                <div class="col-md-6 col-lg-6 col-12 mb-2">
+                                    <label for="id_first_name" class="text-uppercase">
+                                        First name
+                                        <sup class="text-danger small">*</sup>
+                                    </label>
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-12 mb-2">
+                                    <label for="id_last_name" class="text-uppercase">
+                                        Last name
+                                        <sup class="text-danger small">*</sup>
+                                    </label>
+                                    {{ form.last_name }}
+                                </div>
+                            </div>
+
+
+                            <div class="row mt-3 form-group">
+                                <div class="col-md-12 col-lg-12 col-12 mb-2 mb-3">
+                                    <label for="id_password" class="text-uppercase">
+                                        Password
+                                        <sup class="text-danger small">*</sup>
+                                    </label>
+                                    {{ form.password }}
+                                    <small class="d-block small text-muted">
+                                        At least an uppercase, a number and a symbol.
+                                    </small>
+                                </div>
+                
+                                <div class="col-md-12 col-lg-12 col-12 mb-2 form-group">
+                                    <label for="id_confirm_password" class="text-uppercase">
+                                        Confirm password
+                                        <sup class="text-danger small">*</sup>
+                                    </label>
+                                    {{ form.confirm_password }}
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <input id="togglePasswordId" type="checkbox" class="form-check-input me-2" onclick="togglePassword()">
+                                <label for="togglePasswordId">
+                                    Show passwords
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-1 my-3">
+                            <button type="submit" class="btn btn-primary float-end" id="submitBtn">
+                                Register
+                            </button>                            
+                        </div>
+                    </form>
+                </div>
+                <div class="mb-4 mt-3">
+                    <a class="text-decoration-underline" href="{% url 'core:login' %}">
+                        Have an account?
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block extra_scripts %}
+    <script>
+        var password1 = document.getElementById("id_password");
+        var password2 = document.getElementById("id_confirm_password");
+        function togglePassword() {
+            if (password1.type === "password") {
+                password1.type = "text";
+                password2.type = "text";
+            } else {
+                password1.type = "password";
+                password2.type = "password";
+            }
+        }
+    </script>
+{% endblock extra_scripts %}

@@ -1,0 +1,14 @@
+env/
+.env
+*.pyc
+*.yaml
+*.sqlite3
+draft.*
+.vscode/
+.idea/
+.DS_STORE
+mediafiles/
+collectstatic/
+*/__pycache__/*.cpython-311.pyc
+*/*/__pycache__/*.cpython-311.pyc
+*/migrations/__pycache__/*.cpython-311.pyc

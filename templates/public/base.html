@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock title %}</title>
+    <meta name="author" content="K. Stéphane Claver DIBY">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="hostname" content="{{ request.get_host }}">
+    <meta name="expected-hostname" content="{{ request.get_host }}">
+
+    {% block favicon %}
+        {% include "public/includes/favicon.html" %}
+    {% endblock favicon %}
+
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    {% block styles %}
+        {% include "public/includes/styles.html" %}
+    {% endblock styles %}
+
+    {% block seo %}{% endblock seo %}
+    {% block extra_head %}{% endblock extra_head %}
+</head>
+<body>
+    {% block navbar %}
+        {% include "public/includes/navbar.html" %}
+    {% endblock navbar %}
+
+    {% block content %}{% endblock content %}
+    {% block extra_content %}{% endblock extra_content %}
+
+    {% block footer %}
+        {% include "public/includes/footer.html" %}
+    {% endblock footer %}
+    
+    {% block scripts %}
+        {% include "public/includes/scripts.html" %}
+    {% endblock scripts %}
+
+    {% block extra_scripts %}{% endblock extra_scripts %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                $(function() {
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "positionClass": "toast-bottom-center",
+                        "preventDuplicates": false,
+                        "onclick": true,
+                        "showDuration": "15000",
+                        "hideDuration": "15000",
+                        "timeOut": "15000",
+                        "extendedTimeOut": "15000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    toastr["{{ message.tags }}"](`{{ message }}`);
+                });
+            </script>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

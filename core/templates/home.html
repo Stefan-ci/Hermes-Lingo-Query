@@ -1,0 +1,39 @@
+{% extends "public/base.html" %}
+
+{% block title %}
+    Home :: {{ site_name }}
+{% endblock title %}
+
+{% block content %}
+    <main class="container py-5">
+        <div class="row mb-2 py-5">
+            <div class="col-md-6 my-2">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <h3 class="mb-0">Swagger UI Docs</h3>
+                        <p class="card-text mb-auto">
+                            A Swagger UI based documentation to help you testing API urls, models and much more.
+                        </p>
+                        <a href="{% url 'core:api-schema-swagger-ui' %}" class="icon-link gap-1 icon-link-hover stretched-link">
+                            Go To Swagger UI Docs
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 my-2">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <h3 class="mb-0">Swagger ReDoc Docs</h3>
+                        <p class="card-text mb-auto">
+                            A ReDoc based documentation to help you understand API urls, responses and much more.
+                        </p>
+                        <a href="{% url 'core:api-schema-redoc' %}" class="icon-link gap-1 icon-link-hover stretched-link">
+                            Go To ReDoc Docs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

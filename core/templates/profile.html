@@ -1,0 +1,48 @@
+{% extends "public/base.html" %}
+
+{% block title %}
+    My profile :: {{ site_name }}
+{% endblock title %}
+
+
+{% block content %}
+    <main class="container py-5">
+        <div class="row mb-2 py-5">
+            <div class="col-md-6 my-2">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <h3 class="mb-0">Your API Key</h3>
+                        <p class="card-text mb-auto">
+                            Provide this key in the headers or in the request parameters with the key 
+                            <code>api-key</code> when using this {{ site_name }} API.
+                        </p>
+                        <p class="card-text mb-auto">
+                            But if you're already signed in, you don't need to provide any key. 
+                            Unless if your API Key has been suspended.
+                        </p>
+                        <p class="card-text mb-auto">
+                            <code>{{ request.user.api_key|safe }}</code>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 my-2">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <h3 class="mb-0">Personal data</h3>
+                        <p class="card-text mb-auto">
+                            <div>Full name : {{ request.user.full_name }}</div>
+                            <div>Email: {{ request.user.email|safe }}</div>
+                            <div>Username: {{ request.user.username|safe }}</div>
+                            <div>
+                                Avatar : 
+                                <img src="{{ request.user.avatar.url }}" class="img-fluid rounded-5" height="50" width="50">
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}
